@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spending Score Prediction</title>
+    <style>
+        body {
+            font-family: 'Helvetica', serif;
+            background-color: #e8f5e9;  
+            margin: 0;
+            padding: 50px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: #1b5e20;  
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.2);
+            color: white;  /* Text color */
+        }
+
+        h1 {
+            text-align: center;
+            color: #c8e6c9; 
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            color: #a5d6a7;  
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 6px;
+            background-color: #388e3c;  
+            color: white;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0px 0px 5px 2px rgba(56,142,60,0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4caf50;  
+            color: white;
+            border: none;
+            border-radius: 6px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #388e3c;  
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            background-color: #2e7d32;  
+            padding: 15px;
+            border-radius: 8px;
+            color: #c8e6c9;
+        }
+
+        .result h3 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Spending Score Prediction</h1>
+        <form action="/predict" method="POST">
+            <label for="sex">Sex (1 = Male, 0 = Female)</label>
+            <input type="number" id="sex" name="sex" min="0" max="1" required>
+
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="18" max="100" required>
+
+            <label for="income">Annual Income (in $)</label>
+            <input type="number" id="income" name="income" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result">
+                <h3>Predicted Spending Score: {{ prediction }}</h3>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
